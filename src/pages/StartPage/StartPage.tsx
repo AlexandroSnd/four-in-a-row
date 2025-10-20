@@ -1,7 +1,6 @@
- 
 import { Link } from "react-router-dom";
+import { AppRoutes } from "../../types/app";
 import s from "./StartPage.module.css";
-import { AppRoutes } from "../types/app";
 
 export const StartPage = () => {
   return (

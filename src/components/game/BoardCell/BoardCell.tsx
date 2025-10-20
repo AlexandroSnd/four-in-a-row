@@ -1,4 +1,5 @@
-import { Player } from "../../types/game";
+import { memo } from "react";
+import { Player } from "../../../types/game";
 import s from "./BoardCell.module.css";
 
 interface BoardcellProps {
@@ -6,7 +7,7 @@ interface BoardcellProps {
   chip?: Player.One | Player.Two | null;
 }
 
-export const BoardCell = ({ colIndex, chip }: BoardcellProps) => {
+export const BoardCell = memo(({ colIndex, chip }: BoardcellProps) => {
   const playerClass =
     chip === Player.One ? s.busyMarkPlayerOne : s.busyMarkPlayerTwo;
 
@@ -17,4 +18,4 @@ export const BoardCell = ({ colIndex, chip }: BoardcellProps) => {
       {chip && <div className={chipClasses}></div>}
     </div>
   );
-};
+});

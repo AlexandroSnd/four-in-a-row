@@ -1,5 +1,5 @@
-import { type Board } from "../../types/game";
-import { BoardCell } from "./BoardCell";
+import { type Board } from "../../../types/game";
+import { BoardCell } from "../BoardCell/BoardCell";
 import s from "./GameBoard.module.css";
 
 interface GameBoardProps {
@@ -26,4 +26,3 @@ export const GameBoard = ({ boardState, onColumnClick }: GameBoardProps) => {
     </div>
   );
 };
-

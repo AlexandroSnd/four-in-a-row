@@ -1,19 +1,16 @@
- 
 import React from "react";
-import { baseBoardState, Player, type Board } from "../../types/game";
+import { Player } from "../../../types/game";
 import s from "./GameOverModal.module.css";
 
 interface GameOverModalProps {
-  winner: Player | null; // Победитель или null, если ничья
-  setIsGameOver: React.Dispatch<React.SetStateAction<boolean>>;
-  setBoardState: React.Dispatch<React.SetStateAction<Board>>;
-  setIsModalShow: React.Dispatch<React.SetStateAction<boolean>>;
+  winner: Player | null;
+  onRestart: () => void;
 }
 
 export const GameOverModal: React.FC<GameOverModalProps> = ({
-  winner, setIsGameOver, setBoardState, setIsModalShow
+  winner,
+  onRestart,
 }) => {
-
   const title = winner ? `Победитель: ${winner}` : "Ничья!";
 
   const chipColorClass =
@@ -22,12 +19,6 @@ export const GameOverModal: React.FC<GameOverModalProps> = ({
       : winner === Player.Two
       ? s.playerTwoColor
       : s.drawColor;
-
-    const onRestart = () => {
-        setIsModalShow(false);
-        setIsGameOver(false);
-        setBoardState(baseBoardState);
-    };
 
   return (
     <div className={s.overlay}>
