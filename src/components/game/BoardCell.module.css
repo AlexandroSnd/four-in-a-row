@@ -1,0 +1,42 @@
+ 
+@keyframes chipDrop {
+  0% {
+    transform: translateY(-300px);
+    opacity: 0.5;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.boardcell {
+  width: 50px;
+  height: 50px;
+  border: 1px solid #8d8989;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  cursor: pointer;
+  padding: 10px;
+  box-sizing: border-box;
+
+}
+
+.busyMarkBase {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  box-sizing: border-box;
+  animation: chipDrop 0.5s cubic-bezier(0.4, 0.0, 0.2, 1) forwards; 
+}
+
+
+.busyMarkPlayerOne {
+  background-color: #eb1313;
+}
+
+.busyMarkPlayerTwo {
+  background-color: #eeeb1f;
+}

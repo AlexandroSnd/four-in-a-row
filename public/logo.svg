@@ -1,0 +1,7 @@
+ 
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="200" viewBox="0 0 120 70" role="img" aria-label="Логотип">
+  <!-- левый шарик: #eeeb1f -->
+  <circle cx="30" cy="30" r="25" fill="#eeeb1f" />
+  <!-- правый шарик: #eb1313 -->
+  <circle cx="90" cy="30" r="25" fill="#eb1313" />
+</svg>

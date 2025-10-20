@@ -1,0 +1,35 @@
+ 
+.column {
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+    position: relative;
+}
+
+.column::before{
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: -8px;
+    transform: translateX(-50%) translateY(-30%) rotate(180deg);
+    width: 0;
+    height: 0;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-bottom: 20px solid rgba(255, 255, 255, 0.8);
+    opacity: 0;
+    transition: top 0.12s ease, opacity 0.12s ease;
+    pointer-events: none;
+}
+
+.column:hover::before,
+.column:focus-within::before {
+    top: -30px;
+    opacity: 1;
+}
+
+.board {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+}
