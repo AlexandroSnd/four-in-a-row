@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useReducer } from "react";
 import { gameReducer } from "../reducers/gameReducer";
-import { BOT_PLAYER, GameMode, initialGameState } from "../types/game";
+import { BOT_PLAYER, GameMode, initialGameState, Player } from "../types/game";
 import { getBotMove } from "../utils/botLogic";
 
 export const useConnectFourGame = (gameMode: GameMode) => {
@@ -14,12 +14,20 @@ export const useConnectFourGame = (gameMode: GameMode) => {
     dispatch({ type: "RESET_GAME" });
   }, []);
 
+  const resetParty = useCallback(() => {
+    dispatch({ type: "RESET_PARTY" });
+  }, []);
+
   const stopBotThinking = useCallback(() => {
     dispatch({ type: "END_BOT_THINKING" });
   }, []);
 
   const startBotThinking = useCallback(() => {
     dispatch({ type: "START_BOT_THINKING" });
+  }, []);
+
+  const updateScore = useCallback((winner: Player | null) => {
+    dispatch({ type: "UPDATE_SCORE", payload: { winner } });
   }, []);
 
   const { currentPlayer, isGameOver, board, isInputBlocked } = gameState;
@@ -43,10 +51,19 @@ export const useConnectFourGame = (gameMode: GameMode) => {
 
       return () => clearTimeout(botDelay);
     } else if (!isBotTurn && isInputBlocked) {
-      // Если бот закончил ход, а флаг по какой-то причине остался true, сбрасываем его.
       stopBotThinking();
     }
-  }, [currentPlayer, isGameOver, board, dispatch, gameMode, isInputBlocked]);
+  }, [
+    currentPlayer,
+    isGameOver,
+    board,
+    dispatch,
+    gameMode,
+    isInputBlocked,
+    startBotThinking,
+    stopBotThinking,
+    makeMove,
+  ]);
 
   return {
     boardState: gameState.board,
@@ -54,7 +71,10 @@ export const useConnectFourGame = (gameMode: GameMode) => {
     isGameOver: gameState.isGameOver,
     winner: gameState.winner,
     isInputBlocked: gameState.isInputBlocked,
+    score: gameState.score,
     makeMove,
     resetGame,
+    updateScore,
+    resetParty,
   };
 };

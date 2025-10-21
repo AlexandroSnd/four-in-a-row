@@ -1,5 +1,3 @@
-// src/pages/GameModePage/GameModePage.tsx
-
 import { useNavigate } from "react-router-dom"; // <-- Импорт
 import { AppRoutes } from "../../types/app";
 import s from "./GameModePage.module.css";

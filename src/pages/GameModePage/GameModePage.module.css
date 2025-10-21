@@ -13,8 +13,8 @@
   font-size: 18px;
 }
 .gamePageButton {
-    display: flex;
-    gap: 10px;
+  display: flex;
+  gap: 10px;
 }
 .gamePageImage {
   width: 40px;

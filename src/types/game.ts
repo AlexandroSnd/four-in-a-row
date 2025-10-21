@@ -27,6 +27,7 @@ export const initialGameState: GameState = {
   isGameOver: false,
   winner: null,
   isInputBlocked: false,
+  score: { [Player.One]: 0, [Player.Two]: 0 },
 };
 
 export interface GameState {
@@ -35,7 +36,12 @@ export interface GameState {
   isGameOver: boolean;
   winner: Player | null;
   isInputBlocked: boolean;
+  score: Record<Player, number>;
 }
+
+export type ResetPartyAction = {
+  type: "RESET_PARTY";
+};
 
 export type ChangeGameModeAction = {
   type: "CHANGE_GAME_MODE";
@@ -49,6 +55,13 @@ export type MakeMoveAction = {
   payload: {
     // Индекс колонки, куда совершается ход
     colIndex: number;
+  };
+};
+
+export type UpdateScoreAction = {
+  type: "UPDATE_SCORE";
+  payload: {
+    winner: Player | null;
   };
 };
 
@@ -78,4 +91,6 @@ export type GameAction =
   | ToggleModalAction
   | ChangeGameModeAction
   | StartBotThinkingAction
-  | EndBotThinkingAction;
+  | EndBotThinkingAction
+  | UpdateScoreAction
+  | ResetPartyAction;

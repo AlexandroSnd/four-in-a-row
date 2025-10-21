@@ -49,6 +49,12 @@ export const gameReducer = (
           board: newBoard,
           isGameOver: true,
           winner: isWin ? currentPlayer : null,
+          score: isWin
+            ? {
+                ...state.score,
+                [currentPlayer]: state.score[currentPlayer] + 1,
+              }
+            : state.score,
         };
       }
 
@@ -59,7 +65,12 @@ export const gameReducer = (
         currentPlayer: currentPlayer === Player.One ? Player.Two : Player.One,
       };
     }
-
+    case "RESET_PARTY": {
+      return {
+        ...initialGameState,
+        score: state.score,
+      };
+    }
     case "RESET_GAME": {
       return initialGameState;
     }
