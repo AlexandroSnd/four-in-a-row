@@ -1,9 +1,9 @@
 import { useCallback, useEffect, useReducer } from "react";
 import { gameReducer } from "../reducers/gameReducer";
-import { BOT_PLAYER, initialGameState, type GameMode } from "../types/game";
+import { BOT_PLAYER, GameMode, initialGameState } from "../types/game";
 import { getBotMove } from "../utils/botLogic";
 
-export const useConnectFourGame = () => {
+export const useConnectFourGame = (gameMode: GameMode) => {
   const [gameState, dispatch] = useReducer(gameReducer, initialGameState);
 
   const makeMove = useCallback((colIndex: number) => {
@@ -14,33 +14,46 @@ export const useConnectFourGame = () => {
     dispatch({ type: "RESET_GAME" });
   }, []);
 
-//   const { currentPlayer, isGameOver, board } = gameState;
+  const stopBotThinking = useCallback(() => {
+    dispatch({ type: "END_BOT_THINKING" });
+  }, []);
 
-//   useEffect(() => {
-//     // Условие 1: Игра не окончена
-//     if (isGameOver) return;
+  const startBotThinking = useCallback(() => {
+    dispatch({ type: "START_BOT_THINKING" });
+  }, []);
 
-//     // Условие 2: Режим "Против Бота" И сейчас ход Бота
-//     const isBotTurn = gameMode === 'PVE' && currentPlayer === BOT_PLAYER;
+  const { currentPlayer, isGameOver, board, isInputBlocked } = gameState;
 
-//     if (isBotTurn) {
-//       const botDelay = setTimeout(() => {
-//         const colIndex = getBotMove(board);
+  useEffect(() => {
+    if (isGameOver) return;
+    const isBotTurn = gameMode === GameMode.PVE && currentPlayer === BOT_PLAYER;
 
-//         if (colIndex !== null) {
-//           makeMove(colIndex);
-//         }
-//       }, 800);
+    if (isBotTurn) {
+      startBotThinking();
 
-//       return () => clearTimeout(botDelay);
-//     }
-//   }, [currentPlayer, isGameOver, board, dispatch, gameMode]);
+      const botDelay = setTimeout(() => {
+        const colIndex = getBotMove(board);
+
+        if (colIndex !== null) {
+          makeMove(colIndex);
+        }
+
+        stopBotThinking();
+      }, 800);
+
+      return () => clearTimeout(botDelay);
+    } else if (!isBotTurn && isInputBlocked) {
+      // Если бот закончил ход, а флаг по какой-то причине остался true, сбрасываем его.
+      stopBotThinking();
+    }
+  }, [currentPlayer, isGameOver, board, dispatch, gameMode, isInputBlocked]);
 
   return {
     boardState: gameState.board,
     currentPlayer: gameState.currentPlayer,
     isGameOver: gameState.isGameOver,
     winner: gameState.winner,
+    isInputBlocked: gameState.isInputBlocked,
     makeMove,
     resetGame,
   };

@@ -1,12 +1,14 @@
- 
-.column {
+ .column {
     display: flex;
     flex-direction: column;
-    cursor: pointer;
     position: relative;
+ }
+
+.clickableColumn {
+    cursor: pointer;
 }
 
-.column::before{
+.clickableColumn::before{
     content: '';
     position: absolute;
     left: 50%;
@@ -22,8 +24,8 @@
     pointer-events: none;
 }
 
-.column:hover::before,
-.column:focus-within::before {
+.clickableColumn:hover::before,
+.clickableColumn:focus-within::before {
     top: -30px;
     opacity: 1;
 }

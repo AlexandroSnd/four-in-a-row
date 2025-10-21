@@ -2,8 +2,13 @@ export enum Player {
   One = "Player One (Red)",
   Two = "Player Two (Yellow)",
 }
-export type GameMode = 'PVP' | 'PVE';
+export enum GameMode {
+  PVP = "PVP",
+  PVE = "PVE",
+}
+
 export const BOT_PLAYER = Player.Two;
+export const HUMAN_PLAYER = Player.One;
 
 export const ROWS = 6;
 export const COLS = 7;
@@ -21,6 +26,7 @@ export const initialGameState: GameState = {
   currentPlayer: Player.One,
   isGameOver: false,
   winner: null,
+  isInputBlocked: false,
 };
 
 export interface GameState {
@@ -28,7 +34,15 @@ export interface GameState {
   currentPlayer: Player;
   isGameOver: boolean;
   winner: Player | null;
+  isInputBlocked: boolean;
 }
+
+export type ChangeGameModeAction = {
+  type: "CHANGE_GAME_MODE";
+  payload: {
+    gameMode: GameMode;
+  };
+};
 
 export type MakeMoveAction = {
   type: "MAKE_MOVE";
@@ -49,5 +63,19 @@ export type ToggleModalAction = {
   };
 };
 
+export type StartBotThinkingAction = {
+  type: "START_BOT_THINKING";
+};
+
+export type EndBotThinkingAction = {
+  type: "END_BOT_THINKING";
+};
+
 // Объединение всех возможных действий
-export type GameAction = MakeMoveAction | ResetGameAction | ToggleModalAction;
+export type GameAction =
+  | MakeMoveAction
+  | ResetGameAction
+  | ToggleModalAction
+  | ChangeGameModeAction
+  | StartBotThinkingAction
+  | EndBotThinkingAction;

@@ -11,7 +11,7 @@ export const GameOverModal: React.FC<GameOverModalProps> = ({
   winner,
   onRestart,
 }) => {
-  const title = winner ? `Победитель: ${winner}` : "Ничья!";
+  const title = winner ? `Winner: ${winner}` : "Draw!";
 
   const chipColorClass =
     winner === Player.One
@@ -25,10 +25,10 @@ export const GameOverModal: React.FC<GameOverModalProps> = ({
       <div className={`${s.modalContainer} ${chipColorClass}`}>
         <h2 className={s.modalTitle}>{title}</h2>
 
-        <p className={s.modalMessage}>Партия завершена!</p>
+        <p className={s.modalMessage}>The party is over!</p>
 
         <button className={s.restartButton} onClick={onRestart}>
-          Начать заново
+          Restart
         </button>
       </div>
     </div>

@@ -5,10 +5,11 @@ import s from "./GameBoard.module.css";
 interface GameBoardProps {
   boardState: Board;
   onColumnClick?: (colIndex: number) => void;
+  isInputBlocked: boolean;
 }
 
-export const GameBoard = ({ boardState, onColumnClick }: GameBoardProps) => {
-  console.log(boardState);
+export const GameBoard = ({ boardState, onColumnClick, isInputBlocked }: GameBoardProps) => {
+  const columnClass = isInputBlocked ? s.column : `${s.column} ${s.clickableColumn}`;
 
   return (
     <div className={s.board}>
@@ -16,7 +17,7 @@ export const GameBoard = ({ boardState, onColumnClick }: GameBoardProps) => {
         <div
           onClick={() => onColumnClick?.(colIndex)}
           key={colIndex}
-          className={s.column}
+          className={columnClass}
         >
           {col.map((cell, rowIndex) => (
             <BoardCell key={rowIndex} colIndex={rowIndex} chip={cell} />
