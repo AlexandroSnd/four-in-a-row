@@ -2,6 +2,9 @@ export enum Player {
   One = "Player One (Red)",
   Two = "Player Two (Yellow)",
 }
+export type GameMode = 'PVP' | 'PVE';
+export const BOT_PLAYER = Player.Two;
+
 export const ROWS = 6;
 export const COLS = 7;
 export const WINNING_COUNT = 4;

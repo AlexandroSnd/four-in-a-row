@@ -9,7 +9,7 @@ export const StartPage = () => {
       <p>
         Welcome to the Four In A Row game! Click "Start Game" to begin playing.
       </p>
-      <Link to={AppRoutes.Game}>
+      <Link to={AppRoutes.GameMode}>
         <button>Start Game</button>
       </Link>
     </div>

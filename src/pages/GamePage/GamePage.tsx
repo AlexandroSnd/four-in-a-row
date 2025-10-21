@@ -9,6 +9,7 @@ import { useConnectFourGame } from "../../hooks/useConnectFourGame";
 import s from "./GamePage.module.css";
 
 export const GamePage = () => {
+
   const { boardState, currentPlayer, isGameOver, winner, makeMove, resetGame } =
     useConnectFourGame();
 
