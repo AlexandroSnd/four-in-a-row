@@ -1,5 +1,5 @@
-import { type Board } from "../../../types/game";
-import { BoardCell } from "../BoardCell/BoardCell";
+import { type Board } from "@/types/game";
+import { BoardCell } from "@/components/game/BoardCell/BoardCell";
 import s from "./GameBoard.module.css";
 
 interface GameBoardProps {

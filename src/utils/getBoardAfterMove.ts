@@ -1,4 +1,4 @@
-import { type Board, type Player } from "../types/game";
+import { type Board, type Player } from "@/types/game";
 
 
 interface MoveResult {

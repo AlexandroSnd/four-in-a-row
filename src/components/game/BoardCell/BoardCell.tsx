@@ -1,5 +1,5 @@
 import { memo } from "react";
-import { Player } from "../../../types/game";
+import { Player } from "@/types/game";
 import s from "./BoardCell.module.css";
 
 interface BoardcellProps {

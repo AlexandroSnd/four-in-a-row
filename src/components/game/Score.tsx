@@ -1,5 +1,5 @@
-import React, { type FC } from 'react'
-import { Player } from '../../types/game'
+import { type FC } from 'react'
+import { Player } from '@/types/game'
 
 interface ScoreProps {
   score: {

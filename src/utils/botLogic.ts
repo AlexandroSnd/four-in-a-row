@@ -1,4 +1,4 @@
-import { type Board, BOT_PLAYER, HUMAN_PLAYER } from "../types/game";
+import { type Board, BOT_PLAYER, HUMAN_PLAYER } from "@/types/game";
 import { checkWin } from "./checkWin"; 
 import { getBoardAfterMove } from "./getBoardAfterMove";
 

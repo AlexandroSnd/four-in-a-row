@@ -1,10 +1,10 @@
 import { Route, Routes } from "react-router-dom";
 import "./App.css";
-import { GameModePage } from "./pages/GameModePage/GameModePage";
-import { GamePage } from "./pages/GamePage/GamePage";
-import { NotFoundPage } from "./pages/NotFoundPage/NotFoundPage";
-import { StartPage } from "./pages/StartPage/StartPage";
-import { AppRoutes } from "./types/app";
+import { GameModePage } from "@/pages/GameModePage/GameModePage";
+import { GamePage } from "@/pages/GamePage/GamePage";
+import { NotFoundPage } from "@/pages/NotFoundPage/NotFoundPage";
+import { StartPage } from "@/pages/StartPage/StartPage";
+import { AppRoutes } from "@/types/app";
 
 function App() {
   return (

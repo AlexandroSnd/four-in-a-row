@@ -1,5 +1,5 @@
  
-import { COLS, ROWS, type Board } from "../types/game";
+import { COLS, ROWS, type Board } from "@/types/game";
 
 export const checkWin = (board: Board, lastMove: { row: number, col: number }): boolean => {
     const { row, col } = lastMove;

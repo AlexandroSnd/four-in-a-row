@@ -1,7 +1,7 @@
-import { useNavigate } from "react-router-dom"; // <-- Импорт
-import { AppRoutes } from "../../types/app";
+import { useNavigate } from "react-router-dom";
+import { AppRoutes } from "@/types/app";
 import s from "./GameModePage.module.css";
-import { GameMode } from "../../types/game";
+import { GameMode } from "@/types/game";
 
 export const GameModePage = () => {
   const navigate = useNavigate();

@@ -1,5 +1,5 @@
 import React from "react";
-import { Player } from "../../../types/game";
+import { Player } from "@/types/game";
 import s from "./GameOverModal.module.css";
 
 interface GameOverModalProps {
@@ -42,3 +42,5 @@ export const GameOverModal: React.FC<GameOverModalProps> = ({
     </>
   );
 };
+
+export default GameOverModal;
