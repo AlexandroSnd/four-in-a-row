@@ -1,4 +1,3 @@
-import React from "react";
 import { Player } from "@/types/game";
 import s from "./GameOverModal.module.css";
 
@@ -8,11 +7,11 @@ interface GameOverModalProps {
   onBackToMenu: () => void;
 }
 
-export const GameOverModal: React.FC<GameOverModalProps> = ({
+export const GameOverModal = ({
   winner,
   onRestart,
   onBackToMenu,
-}) => {
+}: GameOverModalProps) => {
   const title = winner ? `Winner: ${winner}` : "Draw!";
 
   const chipColorClass =
@@ -27,7 +26,6 @@ export const GameOverModal: React.FC<GameOverModalProps> = ({
       <div className={s.overlay}>
         <div className={`${s.modalContainer} ${chipColorClass}`}>
           <h2 className={s.modalTitle}>{title}</h2>
-
           <p className={s.modalMessage}>The party is over!</p>
           <div className={s.buttons}>
             <button className={s.restartButton} onClick={onRestart}>

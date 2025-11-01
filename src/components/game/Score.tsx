@@ -1,5 +1,5 @@
-import { type FC } from 'react'
-import { Player } from '@/types/game'
+import { Player } from "@/types/game";
+import { memo } from "react";
 
 interface ScoreProps {
   score: {
@@ -8,11 +8,13 @@ interface ScoreProps {
   };
 }
 
-export const Score: FC<ScoreProps> = ({score}) => {
+export const Score = memo(({ score }: ScoreProps) => {
   const scoreFirstPlayer = score[Player.One];
   const scoreSecondPlayer = score[Player.Two];
 
   return (
-    <h1>{scoreFirstPlayer}:{scoreSecondPlayer}</h1>
-  )
-}
+    <h1>
+      {scoreFirstPlayer}:{scoreSecondPlayer}
+    </h1>
+  );
+});

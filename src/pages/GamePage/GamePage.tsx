@@ -1,12 +1,14 @@
-import { GameOverModal } from "@/components/game/GameOverModal/GameOverModal";
-import { Confetti } from "@neoconfetti/react";
-import { useLocation } from "react-router-dom";
+import { GameButton } from "@/components/game/BackToMenuButton/GameButton";
 import { GameBoard } from "@/components/game/GameBoard/GameBoard";
+import { GameOverModal } from "@/components/game/GameOverModal/GameOverModal";
 import { PlayersQueue } from "@/components/game/PlayersQueue";
 import { Score } from "@/components/game/Score";
 import { Timer } from "@/components/game/Timer";
 import { useConnectFourGame } from "@/hooks/useConnectFourGame";
 import { useGamePageFlow } from "@/hooks/useGamePageFlow";
+import { Confetti } from "@neoconfetti/react";
+import { useCallback } from "react";
+import { useLocation } from "react-router-dom";
 import s from "./GamePage.module.css";
 
 export const GamePage = () => {
@@ -25,14 +27,19 @@ export const GamePage = () => {
     isInputBlocked,
     makeMove,
     score,
+    timer,
+    updateTimer,
   } = gameApi;
 
-  const handlePlayerMove = (colIndex: number) => {
-    if (isInputBlocked) {
-      return;
-    }
-    makeMove(colIndex);
-  };
+  const handlePlayerMove = useCallback(
+    (colIndex: number) => {
+      if (isInputBlocked) {
+        return;
+      }
+      makeMove(colIndex);
+    },
+    [isInputBlocked, makeMove]
+  );
 
   return (
     <div className={s.container}>
@@ -42,9 +49,20 @@ export const GamePage = () => {
         onColumnClick={handlePlayerMove}
         isInputBlocked={isInputBlocked}
       />
-      <Timer isGameOver={isGameOver} />
+      <Timer isGameOver={isGameOver} timer={timer} updateTimer={updateTimer} />
       <PlayersQueue currentPlayer={currentPlayer} />
-
+      <div className={s.buttonsContainer}>
+        <GameButton
+          image="/restart.png"
+          text="Restart"
+          onClick={handleRestart}
+        />
+        <GameButton
+          image="/back-button.png"
+          text="Back to Menu"
+          onClick={handleBackToMenu}
+        />
+      </div>
       {isModalOpen && (
         <>
           <div className={s.confettiContainer}>

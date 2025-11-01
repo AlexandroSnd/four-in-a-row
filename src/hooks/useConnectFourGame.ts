@@ -30,7 +30,11 @@ export const useConnectFourGame = (gameMode: GameMode) => {
     dispatch({ type: "UPDATE_SCORE", payload: { winner } });
   }, []);
 
-  const { currentPlayer, isGameOver, board, isInputBlocked } = gameState;
+  const updateTimer = useCallback((timer: number) => {
+    dispatch({ type: "UPDATE_TIMER", payload: { timer } });
+  }, []);
+
+  const { currentPlayer, isGameOver, board, isInputBlocked} = gameState;
 
   useEffect(() => {
     if (isGameOver) return;
@@ -72,9 +76,11 @@ export const useConnectFourGame = (gameMode: GameMode) => {
     winner: gameState.winner,
     isInputBlocked: gameState.isInputBlocked,
     score: gameState.score,
+    timer: gameState.timer,
     makeMove,
     resetGame,
     updateScore,
     resetParty,
+    updateTimer
   };
 };

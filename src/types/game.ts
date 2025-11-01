@@ -28,6 +28,7 @@ export const initialGameState: GameState = {
   winner: null,
   isInputBlocked: false,
   score: { [Player.One]: 0, [Player.Two]: 0 },
+  timer: 0,
 };
 
 export interface GameState {
@@ -37,7 +38,15 @@ export interface GameState {
   winner: Player | null;
   isInputBlocked: boolean;
   score: Record<Player, number>;
+  timer: number;
 }
+
+export type UpdateTimerAction = {
+  type: "UPDATE_TIMER";
+  payload: {
+    timer: number;
+  };
+};
 
 export type ResetPartyAction = {
   type: "RESET_PARTY";
@@ -93,4 +102,5 @@ export type GameAction =
   | StartBotThinkingAction
   | EndBotThinkingAction
   | UpdateScoreAction
-  | ResetPartyAction;
+  | ResetPartyAction
+  | UpdateTimerAction;

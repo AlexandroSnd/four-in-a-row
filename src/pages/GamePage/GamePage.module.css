@@ -14,3 +14,7 @@
     pointer-events: none;
     z-index: 10;
 }
+.buttonsContainer {
+    display: flex;
+    gap: 16px;
+}

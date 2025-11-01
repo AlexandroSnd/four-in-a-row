@@ -74,6 +74,12 @@ export const gameReducer = (
     case "RESET_GAME": {
       return initialGameState;
     }
+    case "UPDATE_TIMER": {
+      return {
+        ...state,
+        timer: action.payload.timer,
+      };
+    }
 
     default:
       return state;

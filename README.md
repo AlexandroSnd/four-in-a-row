@@ -1,73 +1,55 @@
-# React + TypeScript + Vite
+# Игра "Четыре в ряд" с поддержкой режимов PvP и PvE (бот)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Стек
 
-Currently, two official plugins are available:
+- React
+- TypeScript
+- Vite
+- ESLint
+- CSS Modules
+- React Router
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Запуск
 
-## React Compiler
+В корне проекта выполните команды:
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+npm install
+npm run dev
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+Приложение будет доступно по адресу, указанному в консоли (http://localhost:5173).
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## Сильные стороны проекта
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+Проект разработан с акцентом на чистую архитектуру и разделение ответственности
+
+1. Разделение Логики и UI (Hooks-Driven)
+   - Компонент-Контроллер (GamePage): Выступает как чистый "оркестратор", который вызывает хуки и передает данные.
+   - Декларативное получение конфигурации: Использование useLocation в GamePage для получения gameMode (PvP/PvE) — чистый способ инициализации всей логики игры (useConnectFourGame) на основе конфигурации роутера.
+   - Бизнес-Логика (useConnectFourGame): Вся сложность, включая useReducer (управление состоянием игры, доской, счетом) и логику бота, полностью инкапсулирована внутри хука.
+   - UI-Поток (useGamePageFlow): Управляет только потоком страницы, модальными окнами и навигацией.
+2. Оптимизация и Мемоизация
+   - Все дочерние компоненты (GameBoard, Score, Timer, PlayersQueue) обернуты в React.memo, за счет чего компоненты гарантированно перерисовываются только тогда, когда действительно изменяются их пропсы.
+   - Использование useCallback для оптимизации производительности и предотвращения лишних перерисовок.
+3. Переиспользуемость
+   - Гибкие UI-Компоненты: Компоненты, такие как GameButton и GameOverModal, спроектированы как переиспользуемые и независимые от логики игры. Они принимают все данные и колбэки через пропсы, что позволяет использовать их в других частях приложения.
+4. Размер бандла
+    - Максимально возможный функционал написан нативно, без использования сторонних библиотек.
+    - Ленивая загрузка компонентов: Использование React.lazy и Suspense для динамической подгрузки компонентов, что позволяет уменьшить начальный размер бандла.
+    - Картинки сжаты без потери качества.
+
+# Задание 2
+
+Для проверки второго задания перейдите по [ссылке](http://localhost:5173/validator).
+
+# Задание 3
+
+В рамках этого задания мной были выполнены следующие улучшения:
+
+- Анимация падения фишек
+- Указатель текущей колонки
+- Визуальный эффект (конфетти) при выигрыше
+- Минималистичный дизайн
+- Игра с ботом
+- Интерактивность при игре с ботом (визуальные подсказки)

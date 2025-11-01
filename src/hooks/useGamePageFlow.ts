@@ -13,7 +13,7 @@ interface GameHookAPI {
 export const useGamePageFlow = (gameHookApi: GameHookAPI) => {
 
   const navigate = useNavigate();
-  const { isGameOver, resetGame, winner, resetParty } = gameHookApi;
+  const { isGameOver, resetGame, winner, resetParty} = gameHookApi;
 
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
 

@@ -3,4 +3,5 @@ export enum AppRoutes {
   GameMode = "/game-mode",
   Game = "/game",
   NotFound = "*",
+  Validator = "/validator"
 }
