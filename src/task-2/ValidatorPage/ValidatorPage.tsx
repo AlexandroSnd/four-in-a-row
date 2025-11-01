@@ -4,7 +4,7 @@ import s from "./ValidatorPage.module.css";
 
 interface LazyJsonViewerProps {
   data: object;
-  [key: string]: string | object | number;
+  [key: string]: string | object | number | null;
 }
 
 const LazyJsonViewer = lazy(() =>
@@ -21,10 +21,16 @@ export const ValidatorPage = () => {
   const [validatedValue, setValidatedValue] = useState<object>({});
 
   const handleValidate = () => {
-    const parsedValue = JSON.parse(inputValue);
-    const validatedValue = validator(parsedValue);
-    setValidatedValue(validatedValue);
-    console.log(validatedValue);
+    try {
+      const parsedValue = JSON.parse(inputValue);
+      console.log("PARSED", parsedValue);
+      const validatedValue = validator(parsedValue);
+      setValidatedValue(validatedValue);
+      console.log(validatedValue);
+    } catch (error) {
+      console.error("Error parsing JSON:", error);
+      alert('Invalid array')
+    }
   };
 
   return (
@@ -45,6 +51,7 @@ export const ValidatorPage = () => {
             data={validatedValue}
             theme="monokai"
             collapsed={1}
+            name={null}
           />
         </div>
       </Suspense>

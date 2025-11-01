@@ -11,8 +11,10 @@
 }
 
 .gameButtonImage {
-    width: 40px;
-    height: 40px;
+    width: 2.2vw;
+    height: 2.2vw;
+    max-width: 36px;
+    max-height: 36px;
     transition: transform 0.2s ease;
 }
 

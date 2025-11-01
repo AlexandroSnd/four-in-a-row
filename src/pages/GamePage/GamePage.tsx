@@ -1,4 +1,4 @@
-import { GameButton } from "@/components/game/BackToMenuButton/GameButton";
+import { GameButton } from "@/components/game/GameButton/GameButton";
 import { GameBoard } from "@/components/game/GameBoard/GameBoard";
 import { GameOverModal } from "@/components/game/GameOverModal/GameOverModal";
 import { PlayersQueue } from "@/components/game/PlayersQueue";

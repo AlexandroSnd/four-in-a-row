@@ -17,6 +17,12 @@
 npm install
 npm run dev
 ```
+или 
+
+```bash
+bun install
+bun dev
+```
 
 Приложение будет доступно по адресу, указанному в консоли (http://localhost:5173).
 
@@ -41,7 +47,7 @@ npm run dev
 
 # Задание 2
 
-Для проверки второго задания перейдите по [ссылке](http://localhost:5173/validator).
+Для проверки второго задания перейдите по [ссылке](http://localhost:5173/validator) (/validator).
 
 # Задание 3
 
