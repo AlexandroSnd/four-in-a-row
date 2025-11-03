@@ -47,7 +47,7 @@ bun dev
 
 # Задание 2
 
-Для проверки второго задания перейдите по [ссылке](http://localhost:5173/validator) (/validator).
+Для проверки второго задания перейдите по [ссылке](http://localhost:5173/validator) (/validator от корня сайта, код валидатора в src/task-2/utils/task-2.ts).
 
 # Задание 3
 
