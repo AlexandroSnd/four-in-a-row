@@ -17,12 +17,6 @@
 npm install
 npm run dev
 ```
-или 
-
-```bash
-bun install
-bun dev
-```
 
 Приложение будет доступно по адресу, указанному в консоли (http://localhost:5173).
 
